@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: roguelearn-social-staging
+
+namespace: roguelearn-social-staging
+
+resources:
+- ../../base
+
+patchesStrategicMerge:
+- deployment-patch.yaml
+
+commonLabels:
+  environment: staging
+
+images:
+- name: roguelearn/social-api
+  newTag: staging-latest
+
+replicas:
+- name: roguelearn-social-deployment
+  count: 2
+
+configMapGenerator:
+- name: roguelearn-social-config
+  literals:
+  - ASPNETCORE_ENVIRONMENT=Staging
+  - LOG_LEVEL=Debug

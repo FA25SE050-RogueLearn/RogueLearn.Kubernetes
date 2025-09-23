@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: roguelearn-quest-staging
+
+namespace: roguelearn-quest-staging
+
+resources:
+- ../../base
+
+patchesStrategicMerge:
+- deployment-patch.yaml
+
+commonLabels:
+  environment: staging
+
+images:
+- name: roguelearn/quest-api
+  newTag: staging-latest
+
+replicas:
+- name: roguelearn-quest-deployment
+  count: 2
+
+configMapGenerator:
+- name: roguelearn-quest-config
+  literals:
+  - ASPNETCORE_ENVIRONMENT=Staging
+  - LOG_LEVEL=Debug

@@ -1,9 +1,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: roguelearn-ingress
+  name: roguelearn-quest-ingress
   labels:
-    app: roguelearn-app
+    app: roguelearn-quest-app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -12,16 +12,16 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - roguelearn.example.com
-    secretName: roguelearn-tls
+    - quest.api.roguelearn.site
+    secretName: roguelearn-quest-tls
   rules:
-  - host: roguelearn.example.com
+  - host: quest.api.roguelearn.site
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: roguelearn-service
+            name: roguelearn-quest-service
             port:
               number: 80
