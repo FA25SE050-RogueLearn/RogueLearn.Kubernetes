@@ -1,20 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: roguelearn-user-api-staging
+  name: roguelearn-social-api-prod
   namespace: argocd
   labels:
-    app: roguelearn-user-api
-    environment: staging
+    app: roguelearn-social-api
 spec:
   project: default
   source:
     repoURL: https://github.com/FA25SE050-RogueLearn/RogueLearn.Kubernetes.git
     targetRevision: HEAD
-    path: roguelearn-user-api/overlays/staging
+    path: roguelearn-social-api/base
   destination:
     server: https://kubernetes.default.svc
-    namespace: roguelearn-staging
+    namespace: roguelearn
   syncPolicy:
     automated:
       prune: true
