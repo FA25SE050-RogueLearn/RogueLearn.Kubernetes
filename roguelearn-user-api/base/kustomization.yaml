@@ -16,5 +16,5 @@ commonLabels:
 namespace: roguelearn
 
 images:
-- name: roguelearn/dotnet-app
+- name: roguelearn/user-api
   newTag: latest
