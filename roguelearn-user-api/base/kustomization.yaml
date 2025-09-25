@@ -9,4 +9,4 @@ resources:
 images:
 - name: soybean2610/roguelearn-user-api
   newName: soybean2610/roguelearn-user-api
-  newTag: d8e6e7cb
+  newTag: 6e3e0edd
