@@ -1,24 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: roguelearn-deployment
-  labels:
-    app: roguelearn-app
-    component: backend
+  name: roguelearn-user-api
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: roguelearn-app
+      app: roguelearn-user-api
   template:
     metadata:
       labels:
-        app: roguelearn-app
+        app: roguelearn-user-api
         component: backend
     spec:
+      imagePullSecrets:
+      - name: harbor-image-pull-creds
       containers:
       - name: roguelearn-container
-        image: soybean2610/roguelearn-user-api:latest
+        image: harbor.roguelearn.site/roguelearn/roguelearn-user-api:latest
         ports:
         - containerPort: 80
           name: http

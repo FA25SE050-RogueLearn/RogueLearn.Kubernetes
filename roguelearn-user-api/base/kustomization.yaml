@@ -7,6 +7,6 @@ resources:
 - ingress.yaml
 
 images:
-- name: soybean2610/roguelearn-user-api
-  newName: soybean2610/roguelearn-user-api
-  newTag: 6e3e0edd
+- name: harbor.roguelearn.site/roguelearn/roguelearn-user-api
+  newName: harbor.roguelearn.site/roguelearn/roguelearn-user-api
+  newTag: latest
