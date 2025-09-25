@@ -8,4 +8,5 @@ resources:
 
 images:
 - name: soybean2610/roguelearn-user-api
+  newName: soybean2610/roguelearn-user-api
   newTag: latest
