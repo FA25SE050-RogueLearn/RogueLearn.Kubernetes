@@ -10,3 +10,6 @@ images:
 - name: harbor.roguelearn.site/roguelearn/roguelearn-user-api
   newName: harbor.roguelearn.site/roguelearn/roguelearn-user-api
   newTag: latest
+- name: soybean2610/roguelearn-user-api
+  newName: harbor.roguelearn.site/roguelearn/roguelearn-user-api
+  newTag: 761c2fc7
