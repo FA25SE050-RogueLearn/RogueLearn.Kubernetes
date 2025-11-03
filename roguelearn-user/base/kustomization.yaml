@@ -1,15 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: roguelearn
+
 resources:
-- deployment.yaml
-- service.yaml
-- ingress.yaml
+  - deployment.yaml
+  - service.yaml
 
 images:
-- name: harbor.roguelearn.site/roguelearn/roguelearn-user-api
-  newName: harbor.roguelearn.site/roguelearn/roguelearn-user-api
-  newTag: latest
-- name: soybean2610/roguelearn-user-api
-  newName: harbor.roguelearn.site/roguelearn/roguelearn-user-api
-  newTag: 761c2fc7
+  - name: harbor.roguelearn.site/roguelearn/roguelearn-user-api
+    newName: harbor.roguelearn.site/roguelearn/roguelearn-user-api
+    newTag: latest
+  - name: soybean2610/roguelearn-user-api
+    newName: harbor.roguelearn.site/roguelearn/roguelearn-user-api
+    newTag: 761c2fc7
