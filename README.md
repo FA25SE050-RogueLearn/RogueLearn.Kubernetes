@@ -3,7 +3,7 @@ This repository contains all the K8s manifests of RogueLearn
 
 ---
 # Set up NGINX Ingress
-- Prequisites: [kubectl][https://kubernetes.io/docs/reference/kubectl/kubectl/], Cluster (up and running), [Helm][https://helm.sh/] (optional)
+- Prequisites: [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/), Cluster (up and running), [Helm](https://helm.sh/) (optional)
 - Using Kubectl
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.4/deploy/static/provider/cloud/deploy.yaml
@@ -34,4 +34,3 @@ kubectl wait --namespace ingress-nginx \
 kubectl get pods -n ingress-nginx
 kubectl get svc -n ingress-nginx
 ```
-
