@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: executor
+        app: roguelearn-executor-api
         component: backend
     spec:
       serviceAccountName: executor-sa
@@ -22,10 +22,12 @@ spec:
           imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 8081 # receive here
+              containerPort: 8080 # receive here
               protocol: TCP
+            - name: https
+              containerPort: 443
             - name: grpc
-              containerPort: 8082 # receive here
+              containerPort: 50051 # receive here
               protocol: TCP
           resources:
             requests:
@@ -36,13 +38,13 @@ spec:
               cpu: "500m"
           livenessProbe:
             httpGet:
-              path: /healthcheck
-              port: 8080
+              path: /health
+              port: 8080 # HTTP Port
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /ready
-              port: 8080
+              port: 8080 # HTTP Port
             initialDelaySeconds: 5
             periodSeconds: 5

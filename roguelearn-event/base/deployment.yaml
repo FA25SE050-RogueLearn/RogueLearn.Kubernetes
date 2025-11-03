@@ -1,37 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: roguelearn-user-api
+  name: roguelearn-event-api
   labels:
-    app: roguelearn-user-api
+    app: roguelearn-event-api
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: roguelearn-user-api
+      app: roguelearn-event-api
   template:
     metadata:
       labels:
-        app: roguelearn-user-api
+        app: roguelearn-event-api
         component: backend
     spec:
-      imagePullSecrets:
-        - name: harbor-image-pull-creds
       containers:
-        - name: roguelearn-user-container
-          image: harbor.roguelearn.site/roguelearn/roguelearn-user-api:latest
+        - name: event
+          image: songphuc/event:latest
+          imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 8080
-            - name: https
-              containerPort: 443
+              containerPort: 8080 # receive here
+              protocol: TCP
+            - containerPort: 443
+              name: https
             - name: grpc
-              containerPort: 50051
-          env:
-            - name: ASPNETCORE_ENVIRONMENT
-              value: "Production"
-            - name: ASPNETCORE_URLS
-              value: "http://+:8080"
+              containerPort: 50051 # receive here
+              protocol: TCP
           resources:
             requests:
               memory: "256Mi"
@@ -42,12 +38,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 8080 # HTTP Port
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /ready
-              port: 8080
+              port: 8080 # HTTP Port
             initialDelaySeconds: 5
             periodSeconds: 5

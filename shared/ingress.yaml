@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: roguelearn-api-ingress
-  namespace: roguelearn
   annotations:
     # SSL
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -40,46 +39,46 @@ spec:
               service:
                 name: user-service
                 port:
-                  number: 80
+                  number: 8080
           - path: /execution
             pathType: Prefix
             backend:
               service:
                 name: executor-service
                 port:
-                  number: 80
+                  number: 8080
           - path: /events
             pathType: Prefix
             backend:
               service:
                 name: event-service
                 port:
-                  number: 80
+                  number: 8080
           - path: /event-requests
             pathType: Prefix
             backend:
               service:
                 name: event-service
                 port:
-                  number: 80
+                  number: 8080
           - path: /submissions
             pathType: Prefix
             backend:
               service:
                 name: event-service
                 port:
-                  number: 80
+                  number: 8080
           - path: /problems
             pathType: Prefix
             backend:
               service:
                 name: event-service
                 port:
-                  number: 80
+                  number: 8080
           - path: /tags
             pathType: Prefix
             backend:
               service:
-                name: events-service
+                name: event-service
                 port:
-                  number: 80
+                  number: 8080

@@ -6,17 +6,19 @@ metadata:
     app: roguelearn-app
     component: backend
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-    app: executor
+    app: roguelearn-executor-api
   ports:
     - name: http
       protocol: TCP
-      port: 8081
-      targetPort: 8081 # forward to here
-      nodePort: 30010
+      port: 8080
+      targetPort: 8080 # forward to here
     - name: grpc
       protocol: TCP
-      port: 8082
-      targetPort: 8082 # forward to here
-      nodePort: 30011
+      port: 50051 # Common Port for gRPC
+      targetPort: 50051 # forward to here
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 443
